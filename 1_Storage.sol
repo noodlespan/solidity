@@ -10,6 +10,17 @@ contract Storage {
 
     uint256 number;
 
+    uint phone;
+
+
+    function setPhone(uint _phone) public {
+        phone = _phone;
+    }
+
+    function getPhone() public view returns(uint){
+        return phone
+    }
+
     /**
      * @dev Store value in variable
      * @param num value to store
