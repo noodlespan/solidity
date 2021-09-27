@@ -1,1 +1,3 @@
-ssss
+## pure-js-ethereum-client-login.html  
+1. 纯JS以太坊钱包登录应用/网站
+2. 获取账户account、network和chainId
