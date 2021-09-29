@@ -25,6 +25,17 @@
         <p><span id="getAccountButtonResult"></span></p>
 
         <button class=" btn btn-primary" id="sendButton"> Send </button>
+        <button class=" btn btn-primary" id="sendButton2"> Send2 </button>
+        <p></p>
+
+        <button class=" btn btn-primary" id="isConnected"> isConnected </button>
+        <button class=" btn btn-primary" id="requestPermissionsButton"> requestPermissionsButton </button>
+        <p></p>
+
+        <button class=" btn btn-primary" id="getBalance"> getBalance </button>
+        <p><span id="getBalanceResult"></span></p>
+
+
 
     </div>
 
@@ -37,7 +48,6 @@
 
     const initialize = () => {
         console.log('initialize');
-
         //检查是否安装客户端钱包
         const isMetaMaskIntalled = () => {
             const { ethereum } = window;
@@ -46,6 +56,7 @@
             }
             return Boolean(ethereum && ethereum.isMetaMask);
         }
+
 
         //登录并获取账户
         const getAccount = async () => {
@@ -95,7 +106,7 @@
         }
     }
 
-    //转账
+    //转账1
     sendButton.onclick = async () => {
         try {
             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -115,6 +126,94 @@
     }
 
 
+    //转账2
+    sendButton2.onclick = async () => {
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+
+        //參數必須是字符串
+        const params = [
+            {
+                from: accounts[0],
+                to: '0x29b38578a5d7d9232901a329ff99b4c28bc439e5',
+                gas: '0x5208',
+                gasPrice: '0x4a817c800',
+                value: '0x2386f26fc10000',
+            },
+        ];
+
+        try {
+            ethereum
+                .request({
+                    method: 'eth_sendTransaction',
+                    params,
+                })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+    //當賬戶修改時，觸發事件
+    ethereum.on('accountsChanged', function (accounts) {
+        console.log("accountChanged...");
+    });
+
+    //當chainId修改時,觸發事件
+    ethereum.on('chainChanged', (chainId) => {
+        console.log("chainChanged...");
+        window.location.reload();
+    });
+
+    //檢查網路是否可以連接到區塊。注意，而不是錢包連接
+    isConnected.onclick = async () => {
+        console.log(ethereum.isConnected());
+    }
+
+    //檢查賬戶的權限
+    requestPermissionsButton.onclick = async () => {
+        ethereum
+            .request({
+                method: 'wallet_requestPermissions',
+                params: [{ eth_accounts: {} }],//登錄的賬戶
+
+            })
+            .then((permissions) => {
+                console.log("permissions:" + JSON.stringify(permissions));
+
+                const accountsPermission = permissions.find(
+                    (permission) => permission.parentCapability === 'eth_accounts'
+                );
+                if (accountsPermission) {
+                    console.log('eth_accounts permission successfully requested!');
+                }
+            })
+            .catch((error) => {
+                if (error.code === 4001) {
+                    console.log('Permissions needed to continue.');
+                } else {
+                    console.error(error);
+                }
+            });
+    }
+    
+    //獲取賬戶金額
+    getBalance.onclick = async () => {
+        ethereum.request({
+            method: 'eth_getBalance',
+            params: ['0x249bdb4499bd7c683664C149276C1D86108E2137', 'latest']
+        }).then((result) => {
+            getBalanceResult.innerHTML = `${result} => ${parseInt(result, 16)}  wei`;
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
 
     window.addEventListener('DOMContentLoaded', initialize);
 
