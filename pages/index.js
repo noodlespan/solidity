@@ -3,11 +3,12 @@ import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
-import formatDate from '@/lib/utils/formatDate'
+//import formatDate from '@/lib/utils/formatDate'
+import pastTimes from '@/lib/utils/pastTimes'
 
 import NewsletterForm from '@/components/NewsletterForm'
 
-const MAX_DISPLAY = 5
+const MAX_DISPLAY = 10
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('news')
@@ -31,17 +32,18 @@ export default function Home({ posts }) {
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
                     <dl>
                       <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date)}</time>
+                      <dd className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <time dateTime={date}>{pastTimes(date)}</time>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                          <h2 className="text-lg leading-8 tracking-tight">
                             <Link
+                              target="_blank"
                               href={`/news/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
+                              className="text-gray-600 dark:text-gray-100"
                             >
                               {title}
                             </Link>
@@ -52,14 +54,14 @@ export default function Home({ posts }) {
                             ))}
                           </div>
                         </div>
-                        <div className="prose text-gray-500 max-w-none dark:text-gray-400">
+                        <div className="prose text-sm text-gray-500 max-w-none dark:text-gray-400">
                           {summary}
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
                         <Link
                           href={`/news/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          className="text-sm text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
@@ -76,7 +78,7 @@ export default function Home({ posts }) {
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
-            href="/blog"
+            href="/news"
             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >

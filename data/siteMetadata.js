@@ -1,5 +1,5 @@
 const siteMetadata = {
-  title: '关于数字货币、区块链和智能合约的资讯',
+  title: '关于数字货币、区块链与智能合约的资讯',
   author: 'ThinkingChain',
   headerTitle: 'ThinkingChain',
   description: '比特币 | 以太坊 | 币安 |',
@@ -14,7 +14,7 @@ const siteMetadata = {
   twitter: 'https://twitter.com/thinkingchain',
   facebook: 'https://facebook.com',
   youtube: 'https://www.youtube.com/channel/UCSd6dIPsfEC2FwFPlGj_fvw',
-  locale: 'en-US',
+  locale: 'zh-CN',
   footerTitle: '理想区块链学院',
   analytics: {
     // supports plausible, simpleAnalytics or googleAnalytics

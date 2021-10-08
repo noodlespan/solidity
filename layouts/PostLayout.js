@@ -19,6 +19,8 @@ const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day:
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, fileName, date, title, tags } = frontMatter
 
+  //console.log(`postlayout:${date}`);
+
   return (
     <SectionContainer>
       <BlogSEO
@@ -36,7 +38,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                     <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                      {new Date(date).toLocaleString(siteMetadata.locale, postDateTemplate)}
                     </time>
                   </dd>
                 </div>

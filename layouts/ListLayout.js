@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
 import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
+import pastTimes from '@/lib/utils/pastTimes'
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState('')
@@ -54,13 +55,17 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
                   <dl>
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date)}</time>
+                      <time dateTime={date}>{pastTimes(date)}</time>
                     </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/news/${slug}`} className="text-gray-900 dark:text-gray-100">
+                      <h3 className="text-lg leading-8 tracking-tight">
+                        <Link
+                          target="_blank"
+                          href={`/news/${slug}`}
+                          className="text-gray-600 dark:text-gray-100"
+                        >
                           {title}
                         </Link>
                       </h3>
@@ -70,7 +75,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
                         ))}
                       </div>
                     </div>
-                    <div className="prose text-gray-500 max-w-none dark:text-gray-400">
+                    <div className="prose text-sm text-gray-500 max-w-none dark:text-gray-400">
                       {summary}
                     </div>
                   </div>
