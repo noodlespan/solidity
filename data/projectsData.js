@@ -1,19 +1,15 @@
 const projectsData = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: '智能合约(solidity)课程',
+    description: `幸福是把灵魂安放在最适当的位置。 马上开始...`,
+    imgSrc: '/static/images/canada/lake.jpg',
+    href: '#',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten handphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/news/the-time-machine',
+    title: 'Java Reactive课程',
+    description: `只要我能拥抱世界，那拥抱得笨拙又有什么关系。马上开始...`,
+    imgSrc: '/static/images/canada/java.jpg',
+    href: '#',
   },
 ]
 

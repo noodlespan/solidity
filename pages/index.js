@@ -8,7 +8,7 @@ import pastTimes from '@/lib/utils/pastTimes'
 
 import NewsletterForm from '@/components/NewsletterForm'
 
-const MAX_DISPLAY = 10
+const MAX_DISPLAY = 15
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('news')

@@ -1,6 +1,6 @@
 ---
 name: ThinkingChain
-avatar: /static/images/avatar.png
+avatar: /static/images/about-logo.png
 occupation: 理想区块链学院
 company:
 ---
